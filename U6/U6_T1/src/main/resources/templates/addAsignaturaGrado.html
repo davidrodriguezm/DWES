@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Add Asignatura a Grado')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>			
+			<div class="col-8">
+				<h2 class="m-3">Asignar Asignatura a Grado</h2>
+				<form th:action="@{/grados/addasignatura}" method="post" th:object="${asignaturaGradoDTO}">
+					<label for="gradoId" class="form-label mt-3">Grados</label>
+					<select name="gradoId" id="gradoId" th:field="*{gradoId}" required th:each="g : ${grados}">
+						<option th:value="${g.getId()}" th:text="${g.getNombre()}"></option>
+					</select>
+					<label for="asignaturaId" class="form-label mt-3">Asignaturas</label>
+					<select name="asignaturaId" id="asignaturaId" th:field="*{asignaturaId}" required th:each="a : ${asignaturas}">
+						<option th:value="${a.getId()}" th:text="${a.getNombre()}"></option>
+					</select>					
+					<input type="submit" class="btn btn-primary w-100 mt-3" value="ASIGNAR" />	
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

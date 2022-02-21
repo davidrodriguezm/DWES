@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Grado Asignaturas')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>			
+			<div class="col-8">
+				<h2 th:text="${grado.getNombre()}" class="m-3"></h2>
+				<table class="table table-stripped table-hover" th:if="${grado.getAsignaturas().size() > 0}">
+					<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Creditos</th>
+						<th>Tipo</th>
+						<th>Curso</th>
+						<th>Cuatrimestre</th>
+						<th>Profesor</th>
+					</tr>
+					</thead>					
+					<tbody>
+					 <tr th:each="a : ${grado.getAsignaturas()}">
+					 	<td th:text="${a.getId()}"></td>
+					 	<td th:text="${a.getNombre()}"></td>
+					 	<td th:text="${a.getCreditos()}"></td>
+					 	<td th:text="${a.getTipo()}"></td>
+					 	<td th:text="${a.getCurso()}"></td>
+					 	<td th:text="${a.getCuatrimestre()}"></td>
+					 	<td th:text="${a.getProfesor()}"></td>
+					 </tr>					
+					</tbody>
+				</table>
+				<h3 th:unless="${grado.getAsignaturas().size() > 0}" class="m-3">No hay Asignaturas en este grado</h3>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
