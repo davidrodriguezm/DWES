@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Profesores lista')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-8">
+				<h4 class="text-danger m-2" th:if="${error!=null}" th:text="${error}"></h4>	
+				<table class="table table-stripped table-hover">
+					<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th>NIF</th>
+						<th>Nombre</th>
+						<th>Apellido1</th>
+						<th>Departamento</th>
+					</tr>
+					</thead>					
+					<tbody>
+					 <tr th:each="p : ${profesores}">
+					 	<td th:text="${p.id}"></td>
+					 	<td th:text="${p.nif}"></td>
+					 	<td th:text="${p.nombre}"></td>
+					 	<td th:text="${p.apellido1}"></td>
+					 	<td th:text="${p.departamento.nombre}"></td>
+					 	<td>
+					 		<a sec:authorize="isAuthenticated()" th:href="@{|/profesores/asignaturas?prof=${p.getId()}}|"><i class="bi bi-eye-fill m-1"></i></a>
+					 		<a sec:authorize="hasRole('ADMIN')" th:href="@{|/profesores/addProfesor?prof=${p.getId()}}|"><i class="bi bi-people m-1"></i></a>
+					 	</td>
+					 </tr>					
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

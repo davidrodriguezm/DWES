@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Profesor Asignaturas')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>			
+			<div class="col-8">
+				<h2 th:text="|Asignaturas de: ${profesor.nombre} ${profesor.apellido1}|" class="m-3"></h2>
+				<table th:if="${profesor.getAsignaturas().size() > 0}" class="table table-stripped table-hover">
+					<thead class="table-light">
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>Creditos</th>
+						<th>Tipo</th>
+						<th>Curso</th>
+						<th>Cuatrimestre</th>
+					</tr>
+					</thead>					
+					<tbody>
+					 <tr th:each="a : ${profesor.getAsignaturas()}">
+					 	<td th:text="${a.getId}"></td>
+					 	<td th:text="${a.getNombre}"></td>
+					 	<td th:text="${a.getCreditos}"></td>
+					 	<td th:text="${a.getTipo}"></td>
+					 	<td th:text="${a.getCurso}"></td>
+					 	<td th:text="${a.getCuatrimestre}"></td>
+					</tbody>
+				</table>
+				<h3 th:unless="${profesor.getAsignaturas().size() > 0}" class="m-3">PROFESOR SIN ASIGNATURAS ASIGNADAS</h3>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

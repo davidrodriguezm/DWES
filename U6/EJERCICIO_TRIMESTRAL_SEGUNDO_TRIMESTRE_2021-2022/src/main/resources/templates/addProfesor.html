@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head th:replace="fragments/bootstrap::head(title='Add Profesor')"></head>
+<body>
+	<div class="container mt-5">
+		<div class="row mt-5 justify-content-center">
+			<header th:insert="fragments/parts::menu"></header>
+			<div class="col-6">
+				<h2 class="m-3">Añadir Profesor</h2>
+				<form th:action="@{/profesores/addProfesor}" method="post"	th:object="${profesorDTO}">
+					<label for="nombre" class="form-label mt-3">Nombre</label>
+					<input type="text" class="form-control" th:field="*{nombre}" id="nombre" name="nombre" required>
+					<label for="nombre" class="form-label mt-3">nif</label>
+					<input type="text" class="form-control" th:field="*{nif}" id="nif" name="nif" required>
+					<label for="nombre" class="form-label mt-3">apellido1</label>
+					<input type="text" class="form-control" th:field="*{apellido1}" id="apellido1" name="apellido1" required>
+					<label for="nombre" class="form-label mt-3">apellido2</label>
+					<input type="text" class="form-control" th:field="*{apellido2}" id="apellido2" name="apellido2" required>
+					<label for="nombre" class="form-label mt-3">ciudad</label>
+					<input type="text" class="form-control" th:field="*{ciudad}" id="ciudad" name="ciudad" required>
+					<label for="nombre" class="form-label mt-3">direccion</label>
+					<input type="text" class="form-control" th:field="*{direccion}" id="direccion" name="direccion" required>
+					<label for="nombre" class="form-label mt-3">telefono</label>
+					<input type="text" class="form-control" th:field="*{telefono}" id="telefono" name="telefono" required>
+					<label for="nombre" class="form-label mt-3">fecha Nacimiento</label>
+					<input type="date" th:field="*{fechaNacimiento}" id="fechaNacimiento" name="fechaNacimiento"><br>						
+					<h6 class="text-danger m-2" th:if="${error!=null}" th:text="${error}"></h6>
+					<label for="asignaturaId" class="form-label mt-3">Departamento</label>
+					<select name="departamentoId" id="departamentoId" required>
+						<option th:field="*{departamentoId}" th:each="d : ${departamentos}" th:value="${d.getId()}" th:text="${d.getNombre()}"></option>
+					</select>						
+					<input type="submit" class="btn btn-primary w-100 mt-3" value="AÑADIR" />	
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
